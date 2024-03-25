@@ -12,6 +12,9 @@ public class PhoneRequestDTO {
         this.countryCode = countryCode;
     }
 
+    public PhoneRequestDTO() {
+    }
+
     public String getNumber() {
         return number;
     }
