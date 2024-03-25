@@ -7,10 +7,10 @@ import java.util.List;
 import java.util.regex.Pattern;
 
 public class ArgumentValidator {
+    private static final String REGEX_EMAIL = "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}";
+    private static final String REGEX_ONLY_LETTERS = "^[\\p{L} \\p{M}]+$";
 
-
-    private ArgumentValidator() {
-    }
+    private ArgumentValidator() { /**/ }
 
     public static void requireNotEmpty(String value, String field) {
         if (value.isBlank()) {
@@ -19,7 +19,7 @@ public class ArgumentValidator {
     }
 
     public static void validFormatEmail(String emailAddress, String field) {
-        Pattern pattern = Pattern.compile("^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}");
+        Pattern pattern = Pattern.compile(REGEX_EMAIL);
 
         if (!pattern.matcher(emailAddress).matches()) {
             throw new BusinessException(ErrorCodesEnum.IT_IS_NOT_AN_EMAIL, field);
@@ -27,7 +27,7 @@ public class ArgumentValidator {
     }
 
     public static void onlyAcceptLetters(String value, String field) {
-        Pattern pattern = Pattern.compile("^[\\p{L} \\p{M}]+$");
+        Pattern pattern = Pattern.compile(REGEX_ONLY_LETTERS);
 
         if (!pattern.matcher(value).matches()) {
             throw new BusinessException(ErrorCodesEnum.NOT_VALUES_DIFFERENT_FROM_LETTERS, field);

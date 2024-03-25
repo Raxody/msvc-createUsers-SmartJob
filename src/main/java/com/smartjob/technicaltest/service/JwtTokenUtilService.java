@@ -1,7 +1,6 @@
 package com.smartjob.technicaltest.service;
 
 import com.smartjob.technicaltest.common.util.Constants;
-import com.smartjob.technicaltest.controller.Controller;
 import com.smartjob.technicaltest.entity.User;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.security.Keys;

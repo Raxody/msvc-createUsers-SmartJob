@@ -3,48 +3,50 @@ package com.smartjob.technicaltest.entity;
 import jakarta.persistence.*;
 
 @Entity
+@Table(name = "phones")
 public class Phone {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-    private String number;
-    private String cityCode;
-    private String countryCode;
+    private String uuid;
+    private Long number;
+    private Long cityCode;
+    private Long countryCode;
     @ManyToOne
     @JoinColumn(name = "user_uuid")
     private User user;
 
-    public Phone(String number, String cityCode, String countryCode) {
-        this.number = number;
-        this.cityCode = cityCode;
-        this.countryCode = countryCode;
-    }
-
     public Phone() {
     }
 
-    public String getNumber() {
+    public String getUuid() {
+        return uuid;
+    }
+
+    public void setUuid(String uuid) {
+        this.uuid = uuid;
+    }
+
+    public Long getNumber() {
         return number;
     }
 
-    public void setNumber(String number) {
+    public void setNumber(Long number) {
         this.number = number;
     }
 
-    public String getCityCode() {
+    public Long getCityCode() {
         return cityCode;
     }
 
-    public void setCityCode(String cityCode) {
+    public void setCityCode(Long cityCode) {
         this.cityCode = cityCode;
     }
 
-    public String getCountryCode() {
+    public Long getCountryCode() {
         return countryCode;
     }
 
-    public void setCountryCode(String countryCode) {
+    public void setCountryCode(Long countryCode) {
         this.countryCode = countryCode;
     }
 
@@ -55,5 +57,4 @@ public class Phone {
     public void setUser(User user) {
         this.user = user;
     }
-
 }

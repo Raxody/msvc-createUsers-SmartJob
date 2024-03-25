@@ -91,7 +91,10 @@ public class CreateUserService {
         user.setLastLogin(new Date());
         user.setActive(Boolean.TRUE);
         user.setToken(jwtTokenUtilService.generateToken(user));
-        user.getPhones().forEach(phone -> phone.setUser(user));
+        user.getPhones().forEach(phone -> {
+            phone.setUser(user);
+            phone.setUuid(UUID.randomUUID().toString());
+        });
     }
 
     public void setREGULAR_EXPRESSION_PASSWORD(String REGULAR_EXPRESSION_PASSWORD) {

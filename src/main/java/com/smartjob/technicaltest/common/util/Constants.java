@@ -20,4 +20,5 @@ public final class Constants {
     public static final String ID_EMAIL = "email";
     public static final String ALGORITHM_AES = "AES";
     public static final Integer KEY_SIZE = 256;
+
 }

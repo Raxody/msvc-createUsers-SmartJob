@@ -69,10 +69,8 @@ public class CreateUserServiceTest {
         UserRequestDTO userRequest = createUserRequest(existingEmail);
         when(userCrudRepository.existsByEmail(existingEmail)).thenReturn(true);
 
-        // Act & Assert
+        // Act - Assert
         assertThrows(BusinessException.class, () -> createUserService.createUser(userRequest));
-
-        // Assert
         verify(userCrudRepository, times(1)).existsByEmail(existingEmail);
         verifyNoMoreInteractions(userCrudRepository);
     }

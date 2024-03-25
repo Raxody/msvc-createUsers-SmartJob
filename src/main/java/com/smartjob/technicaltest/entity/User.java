@@ -6,7 +6,6 @@ import jakarta.persistence.*;
 
 import java.util.Date;
 import java.util.List;
-import java.util.UUID;
 
 @Entity
 @Table(name = "users")
@@ -22,6 +21,7 @@ public class User {
     private Date lastLogin;
     private Boolean active;
     private String token;
+    private Date modifiedDate;
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     private List<Phone> phones;
 
@@ -100,4 +100,11 @@ public class User {
         this.token = token;
     }
 
+    public Date getModifiedDate() {
+        return modifiedDate;
+    }
+
+    public void setModifiedDate(Date modifiedDate) {
+        this.modifiedDate = modifiedDate;
+    }
 }

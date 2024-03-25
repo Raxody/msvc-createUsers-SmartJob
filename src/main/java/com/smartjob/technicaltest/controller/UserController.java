@@ -4,14 +4,11 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.smartjob.technicaltest.common.exception.BusinessException;
 import com.smartjob.technicaltest.common.exception.ErrorCodesEnum;
 import com.smartjob.technicaltest.common.util.Constants;
+import com.smartjob.technicaltest.dto.UserResponseDTO;
 import com.smartjob.technicaltest.service.JwtTokenUtilService;
 import com.smartjob.technicaltest.dto.UserRequestDTO;
-import com.smartjob.technicaltest.entity.User;
 import com.smartjob.technicaltest.service.CreateUserService;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
-import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.web.bind.annotation.*;
 
 import java.security.NoSuchAlgorithmException;
@@ -20,22 +17,24 @@ import java.util.logging.Logger;
 
 @RestController
 @RequestMapping("/technicalTest")
-public class Controller {
+public class UserController {
     private final CreateUserService createUserService;
     private final JwtTokenUtilService jwtTokenUtilService;
 
-    public Controller(CreateUserService createUserService, JwtTokenUtilService jwtTokenUtilService) {
+    public UserController(CreateUserService createUserService, JwtTokenUtilService jwtTokenUtilService) {
         this.createUserService = createUserService;
         this.jwtTokenUtilService = jwtTokenUtilService;
     }
 
-    private static final Logger logger = Logger.getLogger(Controller.class.getName());
+    private static final Logger logger = Logger.getLogger(UserController.class.getName());
 
     @PostMapping("/register")
-    public ResponseEntity<User> registerUser(@RequestBody UserRequestDTO userRequest) {
+    public ResponseEntity<UserResponseDTO> registerUser(@RequestBody UserRequestDTO userRequest) {
         if (Boolean.FALSE.equals(jwtTokenUtilService.getMustGenerateANewKey())) {
-            return ResponseEntity.ok(createUserService.createUser(userRequest));
-        }else {
+            ObjectMapper objectMapper = new ObjectMapper();
+            UserResponseDTO userResponseDTO = objectMapper.convertValue(createUserService.createUser(userRequest), UserResponseDTO.class);
+            return ResponseEntity.ok(userResponseDTO);
+        } else {
             throw new BusinessException(ErrorCodesEnum.MUST_GENERATE_A_NEW_TOKEN);
         }
     }

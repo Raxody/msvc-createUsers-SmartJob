@@ -1,11 +1,5 @@
 package com.smartjob.technicaltest.service;
 
-
-import com.smartjob.technicaltest.common.util.Constants;
-import com.smartjob.technicaltest.entity.User;
-import io.jsonwebtoken.Claims;
-import io.jsonwebtoken.Jwts;
-import io.jsonwebtoken.security.Keys;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -36,16 +30,16 @@ public class JwtTokenUtilServiceTest {
 
     @Test
     public void testGetSecretKey() {
+        // Arrange
         JwtTokenUtilService jwtTokenUtilService = new JwtTokenUtilService();
 
         try {
+            // Act
             String secretKeyHex = jwtTokenUtilService.getSecretKey();
+            // Assert
             assertNotNull(secretKeyHex);
-            // Asegúrate de que la longitud de la clave sea correcta
             assertEquals(64, secretKeyHex.length());
-            // Puedes realizar más aserciones sobre la validez del formato si lo deseas
         } catch (NoSuchAlgorithmException e) {
-            // Manejo de la excepción si el algoritmo de generación de clave no está disponible
             fail("No se pudo generar la clave: " + e.getMessage());
         }
     }
