@@ -81,6 +81,10 @@ Este proyecto es una prueba técnica que puede ser ejecutada en cualquier IDE de
 }
 ```
 
+9. **Correr Test:**
+   - Pueden ejecutar los test 1 a 1 yendo a las clases de src/test
+   - O se pueden ejecutar todos los test para revisar que si funcionen`Maven -> technicaltest -> Lifecycle -> test`
+
 # Notas:
 
 1. El parámetro que se encuentra en el archivo `application.properties` llamado:
@@ -108,5 +112,3 @@ Este proyecto es una prueba técnica que puede ser ejecutada en cualquier IDE de
    El primero indica cada cuánto tiempo se debe generar un nuevo token (está parametrizado para ser mensualmente), por políticas de seguridad. Para ejecutar esta renovación, utiliza el siguiente endpoint de tipo GET: [http://localhost:9494/technicalTest/generateNewSecretKey](http://localhost:9494/technicalTest/generateNewSecretKey). Después, detén y vuelve a subir la aplicación para que los cambios surtan efecto.
 
 4. La aplicación cuenta con todos los endpoints de Spring Actuator habilitados para monitoreo del mismo.
-
-

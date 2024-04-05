@@ -1,4 +1,4 @@
-CREATE TABLE users (
+CREATE TABLE IF NOT EXISTS  users (
    uuid VARCHAR(255) PRIMARY KEY,
    name VARCHAR(255),
    email VARCHAR(255),
@@ -10,7 +10,7 @@ CREATE TABLE users (
    token VARCHAR(255)
 );
 
-CREATE TABLE phones (
+CREATE TABLE IF NOT EXISTS  phones (
     uuid VARCHAR(255) PRIMARY KEY,
     number NUMERIC,
     city_code NUMERIC,
